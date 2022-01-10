@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/pages/loginpage.dart';
+import 'package:untitled/utils/routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/pages/homepage.dart';
+import 'package:untitled/widgets/theme.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:homepage(),
-      themeMode: ThemeMode.dark,
-      theme:ThemeData(
-        primarySwatch: Colors.deepPurple
-      ),
-        darkTheme: ThemeData(
-       brightness:Brightness.dark
+      themeMode: ThemeMode.light,
+      theme: MyTheme.lightTheme(context),
 
-      ),
-
+      darkTheme: MyTheme.darkTheme(context),
+      debugShowCheckedModeBanner: false,
+      initialRoute: myroutes.homepage ,
+      routes: {
+        "/": (context) => loginpage(),
+        myroutes.homepage: (context) => homepage(),
+        myroutes.loginpage: (context) => loginpage(),
+      },
     );
   }
 }
